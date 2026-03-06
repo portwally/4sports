@@ -8,9 +8,6 @@ If a joystick is detected at boot, you can use it to navigate the game catalog:
 
 Keyboard navigation continues to work alongside the joystick.
 
-# Is this page for you?
-
-[Download the latest Total Replay II disk image](https://archive.org/details/TotalReplay2) at the archive.org home page if you just want to play Apple II sports games. The rest of this page is for developers who want to work with the source code and assemble it themselves.
 
 # Building the code
 
@@ -90,7 +87,7 @@ $ sudo cp cadius /usr/bin
 Then open a terminal window and type
 
 ``` shell
-$ git clone https://github.com/a2-4am/4sports.git
+$ git clone https://github.com/portwally/4sports
 $ cd 4sports/
 $ make
 ```
