@@ -1,3 +1,5 @@
+Based on [Total Replay II](https://github.com/a2-4am/4sports) by [4am](https://github.com/a2-4am) — an incredible collection of Apple II sports games with a beautiful launcher. All original design, code, and curation is their work. This fork only adds joystick controls for navigating the game catalog.
+
 # Joystick Navigation
 
 If a joystick is detected at boot, you can use it to navigate the game catalog:
@@ -37,9 +39,9 @@ If all goes well, the `build/` subdirectory will contain a `4sports.hdv` image w
 
 If all does not go well, try doing a clean build (`make clean dsk`)
 
-If that fails, perhaps you have out-of-date versions of one of the required tools? The [Makefile](https://github.com/a2-4am/4sports/blob/main/Makefile) lists, but does not enforce, the minimum version requirements of each third-party tool.
+If that fails, perhaps you have out-of-date versions of one of the required tools? The [Makefile](https://github.com/portwally/4sports/blob/main/Makefile) lists, but does not enforce, the minimum version requirements of each third-party tool.
 
-If that fails, please [file a bug](https://github.com/a2-4am/4sports/issues/new).
+If that fails, please [file a bug](https://github.com/portwally/4sports/issues/new).
 
 ## Windows
 
@@ -59,9 +61,9 @@ If all goes well, the `build\` subdirectory will contain a `4sports.hdv` image w
 
 If all does not go well, try doing a clean build (`winmake clean`, `winmake dsk`)
 
-If that fails, perhaps you have out-of-date versions of one of the required tools? The [winmake](https://github.com/a2-4am/4sports/blob/main/winmake.bat) lists, but does not enforce, the minimum version requirements of each third-party tool.
+If that fails, perhaps you have out-of-date versions of one of the required tools? The [winmake](https://github.com/portwally/4sports/blob/main/winmake.bat) lists, but does not enforce, the minimum version requirements of each third-party tool.
 
-If that fails, please [file a bug](https://github.com/a2-4am/4sports/issues/new).
+If that fails, please [file a bug](https://github.com/portwally/4sports/issues/new).
 
 ## Linux
 
@@ -96,9 +98,9 @@ If all goes well, the `build/` subdirectory will contain a `4sports.hdv` image w
 
 If all does not go well, try doing a clean build (`make clean dsk`)
 
-If that fails, perhaps you have out-of-date versions of one of the required tools? The [winmake](https://github.com/a2-4am/4sports/blob/main/winmake.bat) lists, but does not enforce, the minimum version requirements of each third-party tool.
+If that fails, perhaps you have out-of-date versions of one of the required tools? The [winmake](https://github.com/portwally/4sports/blob/main/winmake.bat) lists, but does not enforce, the minimum version requirements of each third-party tool.
 
-If that fails, please [file a bug](https://github.com/a2-4am/4sports/issues/new).
+If that fails, please [file a bug](https://github.com/portwally/4sports/issues/new).
 
 # Navigating the code
 
