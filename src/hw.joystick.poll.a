@@ -1,0 +1,80 @@
+;License:MIT
+;(c) 2018-2020 by 4am
+;
+; Joystick polling for UI navigation
+;
+; Public functions
+; - PollJoystick
+
+;------------------------------------------------------------------------------
+; PollJoystick
+; Poll joystick for UI navigation input. Checks buttons and X axis.
+; Called from WaitForKeyFor30Seconds every 256 inner loop iterations (~8ms).
+;
+; in:    none
+; out:   if joystick input detected:
+;          A = fake keycode (bit 7 set, so N flag is set)
+;        if no input:
+;          A = 0 (N flag clear)
+;        X clobbered
+;        Y clobbered
+;------------------------------------------------------------------------------
+PollJoystick
+         lda   joyDebounce
+         beq   @joyPoll
+         dec   joyDebounce
+         lda   #0                    ; N clear = no input
+         rts
+
+@joyPoll
+         lda   MachineStatus
+         and   #HAS_JOYSTICK
+         beq   @noInput
+
+         ; Check button 0 (action = launch game)
+         lda   $C061                 ; bit 7 = 1 when pressed
+         bpl   @checkBtn1
+
+         ldx   #50                   ; button debounce (~400ms)
+         stx   joyDebounce
+         lda   #$8D                  ; Enter keycode (N set)
+         rts
+
+         ; Check button 1 (help)
+@checkBtn1
+         lda   $C062                 ; bit 7 = 1 when pressed
+         bpl   @readAxis
+
+         ldx   #50                   ; button debounce (~400ms)
+         stx   joyDebounce
+         lda   #$BF                  ; '?' keycode (N set)
+         rts
+
+@readAxis
+         lda   $C070                 ; strobe paddle timers
+         ldy   #0
+-        lda   $C064                 ; paddle 0 (X axis)
+         bpl   +                     ; bit 7 low = timer expired
+         iny
+         bne   -                     ; count up to 255
+         beq   @noInput              ; overflow (accelerated machine?) = skip
++
+         cpy   #64                   ; left threshold
+         bcc   @joyLeft
+         cpy   #192                  ; right threshold
+         bcs   @joyRight
+
+@noInput lda   #0                    ; N clear = no input
+         rts
+
+@joyLeft ldx   #25                   ; axis debounce (~200ms)
+         stx   joyDebounce
+         lda   #$88                  ; left arrow keycode (N set)
+         rts
+
+@joyRight ldx  #25                   ; axis debounce (~200ms)
+         stx   joyDebounce
+         lda   #$95                  ; right arrow keycode (N set)
+         rts
+
+joyDebounce !byte 0                  ; joystick cooldown counter

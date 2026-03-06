@@ -69,6 +69,11 @@ WFKF30SLoop
 +
          dec   Timeout
          bne   WFKF30SLoop
+
+         ; === Joystick poll (every 256 inner loops, ~8ms at 1MHz) ===
+         jsr   PollJoystick
+         bmi   WAITRTS               ; N set = got input, A = fake keycode
+
          dec   Timeout+1
          bne   WFKF30SLoop
          dec   Timeout+2
